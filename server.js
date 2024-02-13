@@ -1,6 +1,6 @@
 
 const express = require('express');
-const stripe = require('stripe')('YOUR_SECRET_STRIPE_KEY');
+const stripe = require('stripe')('sk_test_51NnNaVDfdigleQJOVj8wUUwQyGSEkIBe4NvZb10enJAdtZVc6hLzE9jWdFPRbqC18xwWu2xlNdXtJp6JXNdTCcZy00gzwvi4Y1');
 const app = express();
 
 app.use(express.static('public'));

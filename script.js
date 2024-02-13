@@ -1,5 +1,5 @@
 
-const stripe = Stripe('YOUR_PUBLIC_STRIPE_KEY');
+const stripe = Stripe('pk_test_51NnNaVDfdigleQJOwP86QdubLC2YROSfFbzjXa0wirx7BluZbDU8XH3qWDJ1zrurIDayyxTVCBgyGqyPShTZjfvw00HBLA437Q');
 
 const checkoutButton = document.getElementById('checkout-button');
 checkoutButton.addEventListener('click', () => {
