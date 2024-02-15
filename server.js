@@ -1,30 +1,15 @@
-
+require('dotenv').config();
 const express = require('express');
-const stripe = require('stripe')('sk_test_51NnNaVDfdigleQJOVj8wUUwQyGSEkIBe4NvZb10enJAdtZVc6hLzE9jWdFPRbqC18xwWu2xlNdXtJp6JXNdTCcZy00gzwvi4Y1');
 const app = express();
 
-app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(express.static('public')); // Serve your static files from 'public' directory
 
-app.post('/create-checkout-session', async (req, res) => {
-    const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [{
-            price_data: {
-                currency: 'usd',
-                product_data: {
-                    name: 'Pineapple Shirt',
-                },
-                unit_amount: 2000,
-            },
-            quantity: 1,
-        }],
-        mode: 'payment',
-        success_url: 'YOUR_SUCCESS_URL',
-        cancel_url: 'YOUR_CANCEL_URL',
+app.get('/', (req, res) => {
+    res.render('index', {
+        publishableKey: process.env.STRIPE_PUBLISHABLE_KEY // Use the actual environment variable name
     });
-
-    res.json({ id: session.id });
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Server running on port ' + PORT));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
